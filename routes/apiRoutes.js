@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const db = require("../models");
+const db = require("../models/Workout");
 
 router.get("/workouts", (_req, res) => {
   db.Workout.find({}).then((r) => {
