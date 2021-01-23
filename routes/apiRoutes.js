@@ -1,18 +1,20 @@
-const router = require('express').router();
-const Workout = require('../models/workout');
+const router = require("express").Router();
+const Workout = require("../models/workout");
 
 router.get("/workouts", (req, res) => {
-    Workout.find({})
+  Workout.find({})
     .then((data) => {
-        res.json(data);
+      res.json(data);
     })
     .catch((err) => {
-        res.status(500).json(err);
-    })
+      res.status(400).json(err);
+    });
 });
 
-router.put("workouts/:id", (req, res) => {
+router.put("/workouts/:id", (req, res) => {
+  Workout.updateOne({ id: req.params.id }, { exercises: req.body }, (data) => {
     console.log(`id ${req.params.id} updated`);
-})
+  });
+});
 
-module.exports = router
+module.exports = router;
